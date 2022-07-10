@@ -10,6 +10,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
+    private var notePosition = POSITION_NOT_SET
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,14 +22,26 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val dm = DataManager()
-
         val adapterCourses = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item,
-                dm.courses.values.toList())
+                DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.includedContentMain.spinnerCourses.adapter = adapterCourses
+
+        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+
+        if (notePosition != POSITION_NOT_SET)
+            displayNote()
+    }
+
+    private fun displayNote() {
+        val note = DataManager.notes[notePosition]
+        binding.includedContentMain.textNoteTitle.setText(note.title)
+        binding.includedContentMain.textNoteText.setText(note.text)
+
+        val coursePosition = DataManager.courses.values.indexOf(note.course)
+        binding.includedContentMain.spinnerCourses.setSelection(coursePosition)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
