@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/aggreyah/Documents/Coding/Android/GADS2022/NoteKeeper/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/aggreyah/Documents/Coding/Android/GADS2022/NoteKeeper/app/src/main/res/layout/content_main.xml" value="0.1762917933130699" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.35625" />

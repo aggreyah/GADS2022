@@ -3,6 +3,7 @@ package com.aggreyah.notekeeper
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.aggreyah.notekeeper.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -19,15 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val dm = DataManager()
 
-        binding.fab.setOnClickListener { view ->
-            val myTextView = binding.includedContentMain.textDisplayedValue
-            val originalValue = myTextView.text.toString().toInt()
-            val newValue = originalValue * 2
-            myTextView.text = newValue.toString()
-            Snackbar.make(view, "Value: $originalValue changed to: $newValue",
-                Snackbar.LENGTH_LONG).setAction("Action", null).show()
-        }
+        val adapterCourses = ArrayAdapter(this,
+                android.R.layout.simple_spinner_item,
+                dm.courses.values.toList())
+        adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.includedContentMain.spinnerCourses.adapter = adapterCourses
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
