@@ -1,15 +1,9 @@
 package com.aggreyah.notekeeper
 
 import android.content.Intent
-import android.icu.text.Transliterator
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.aggreyah.notekeeper.databinding.ActivityNoteListBinding
 
 class NoteListActivity : AppCompatActivity() {
@@ -35,8 +29,14 @@ class NoteListActivity : AppCompatActivity() {
 
         binding.includedContentNoteList.listNotes.setOnItemClickListener { parent, view, position, id ->
             val activityIntent = Intent(this, MainActivity::class.java)
-            activityIntent.putExtra(EXTRA_NOTE_POSITION, position)
+            activityIntent.putExtra(NOTE_POSITION, position)
             startActivity(activityIntent)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        (binding.includedContentNoteList.listNotes.adapter as ArrayAdapter<*>).notifyDataSetChanged()
+    }
+
 }
