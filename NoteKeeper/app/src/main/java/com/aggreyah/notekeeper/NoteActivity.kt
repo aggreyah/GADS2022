@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.aggreyah.notekeeper.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class NoteActivity : AppCompatActivity() {
 
     private var notePosition = POSITION_NOT_SET
 
