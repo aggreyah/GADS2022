@@ -2,7 +2,6 @@ package com.aggreyah.notekeeper
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aggreyah.notekeeper.databinding.ActivityNoteListBinding
@@ -24,12 +23,14 @@ class NoteListActivity : AppCompatActivity() {
             startActivity(activityIntent)
         }
         binding.includedContentNoteList.listItems.layoutManager = LinearLayoutManager(this)
+        binding.includedContentNoteList.listItems.adapter =
+            NoteRecyclerAdapter(this, DataManager.notes)
 
     }
 
     override fun onResume() {
         super.onResume()
-
+        binding.includedContentNoteList.listItems.adapter?.notifyDataSetChanged()
     }
 
 }
