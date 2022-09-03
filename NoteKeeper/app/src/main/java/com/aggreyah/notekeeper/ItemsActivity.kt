@@ -63,7 +63,7 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         if (savedInstanceState != null)
-            viewModel.navDrawerDisplaySelection = savedInstanceState.getInt(viewModel.navDrawerDisplaySelectionName)
+            viewModel.restoreState(savedInstanceState)
         handleDisplaySelection(viewModel.navDrawerDisplaySelection)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -98,7 +98,7 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(viewModel.navDrawerDisplaySelectionName, viewModel.navDrawerDisplaySelection)
+        viewModel.saveState(outState)
     }
 
     private fun handleDisplaySelection(itemId: Int){

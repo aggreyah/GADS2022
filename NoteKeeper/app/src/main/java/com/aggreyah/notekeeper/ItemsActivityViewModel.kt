@@ -1,5 +1,6 @@
 package com.aggreyah.notekeeper
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModel
 
 class ItemsActivityViewModel : ViewModel(){
@@ -7,6 +8,8 @@ class ItemsActivityViewModel : ViewModel(){
     var navDrawerDisplaySelectionName =
         "com.aggreyah.notekeeper.ItemsActivityViewModel.navDrawerDisplaySelection"
     var navDrawerDisplaySelection = R.id.nav_notes
+    var recentlyViewedNotesIdsName =
+        "com.aggreyah.notekeeper.ItemsActivityViewModel.recentlyViewedNoteIds"
 
     private val maxRecentlyViewedNotes = 5
     val recentlyViewedNotes = ArrayList<NoteInfo>(maxRecentlyViewedNotes)
@@ -27,5 +30,14 @@ class ItemsActivityViewModel : ViewModel(){
                 recentlyViewedNotes[index + 1] = recentlyViewedNotes[index]
             recentlyViewedNotes[0] = note
         }
+    }
+
+    fun saveState(outState: Bundle) {
+        outState.putInt(navDrawerDisplaySelectionName, navDrawerDisplaySelection)
+    }
+
+    fun restoreState(savedInstanceState: Bundle) {
+        navDrawerDisplaySelection = savedInstanceState.getInt(navDrawerDisplaySelectionName)
+
     }
 }
