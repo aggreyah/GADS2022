@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModel
 
 class ItemsActivityViewModel : ViewModel(){
+    var isNewlyCreated = true
 
     var navDrawerDisplaySelectionName =
         "com.aggreyah.notekeeper.ItemsActivityViewModel.navDrawerDisplaySelection"
@@ -34,10 +35,16 @@ class ItemsActivityViewModel : ViewModel(){
 
     fun saveState(outState: Bundle) {
         outState.putInt(navDrawerDisplaySelectionName, navDrawerDisplaySelection)
+        val noteIds = DataManager.noteIdsAsIntArray(recentlyViewedNotes)
+        outState.putIntArray(recentlyViewedNotesIdsName, noteIds)
     }
 
     fun restoreState(savedInstanceState: Bundle) {
         navDrawerDisplaySelection = savedInstanceState.getInt(navDrawerDisplaySelectionName)
-
+        val noteIds = savedInstanceState.getIntArray(recentlyViewedNotesIdsName)
+        val noteList = noteIds?.let { DataManager.loadNotes(*it) }
+        if (noteList != null) {
+            recentlyViewedNotes.addAll(noteList)
+        }
     }
 }
