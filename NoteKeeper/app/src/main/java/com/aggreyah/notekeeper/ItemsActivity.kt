@@ -62,9 +62,8 @@ class ItemsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             startActivity(Intent(this, NoteActivity::class.java))
         }
 
-        if (savedInstanceState != null && viewModel.isNewlyCreated)
+        if (savedInstanceState != null)
             viewModel.restoreState(savedInstanceState)
-        viewModel.isNewlyCreated = false
         handleDisplaySelection(viewModel.navDrawerDisplaySelection)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout

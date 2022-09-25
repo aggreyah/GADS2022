@@ -16,7 +16,7 @@ object DataManager {
         if(noteIds.isEmpty())
             noteList = notes
         else {
-            noteList = ArrayList(noteIds.size)
+            noteList = ArrayList<NoteInfo>(noteIds.size)
             for(noteId in noteIds)
                 noteList.add(notes[noteId])
         }
@@ -32,7 +32,7 @@ object DataManager {
     fun noteIdsAsIntArray(notes: List<NoteInfo>): IntArray {
         val noteIds = IntArray(notes.size)
         for(index in 0..notes.lastIndex)
-            noteIds[index] = idOfNote(notes[index])
+            noteIds[index] = DataManager.idOfNote(notes[index])
         return noteIds
     }
 
