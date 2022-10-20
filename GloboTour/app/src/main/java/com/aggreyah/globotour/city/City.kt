@@ -70,4 +70,14 @@ object VacationSpots {
 
     // Will contain the 'favorite' marked cities to be displayed in FavoriteFragment RecyclerView
     var favoriteCityList: MutableList<City> = mutableListOf()
+        get() {
+            if (field.size != 0)
+                return field
+            for (city in cityList!!){
+                val isFavorite = city.isFavorite
+                if (isFavorite)
+                    field.add(city)
+            }
+            return field
+        }
 }

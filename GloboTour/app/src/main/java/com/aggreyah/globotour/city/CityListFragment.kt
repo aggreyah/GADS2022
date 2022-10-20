@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.aggreyah.globotour.R
 
-class CityListFragment: Fragment() {
+class CityListFragment: Fragment(){
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,6 +21,7 @@ class CityListFragment: Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_city_list, container, false)
         setUpRecyclerView(view)
+
         return view
     }
 
